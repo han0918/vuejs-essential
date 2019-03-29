@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/auth/register',
     name: 'Register',
-    components: () => import('@/views/auth/Register')
+    component: () => import('@/views/auth/Register')
   }
 ]
 
