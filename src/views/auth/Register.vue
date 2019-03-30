@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import createCaptch from '@/utils/createCaptcha'
+  import createCaptcha from '@/utils/createCaptcha'
   import ls from '@/utils/localStorage'
 
   export default {
@@ -61,7 +61,7 @@
     },
     methods: {
       getCaptcha() {
-        const { tpl, captcha } = createCaptch(6)
+        const { tpl, captcha } = createCaptcha(6)
 
         this.captchaTpl = tpl
         this.localCaptcha = captcha

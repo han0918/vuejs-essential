@@ -1,5 +1,5 @@
 <template>
-    <div v-show="show" :class="`alert alert-{$type} alert-dismissible`">
+    <div v-show="show" :class="`alert alert-${type} alert-dismissible`">
       <button @click="close" type="button" class="close"><span>x</span></button>
       {{ msg }}
     </div>

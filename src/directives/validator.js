@@ -71,7 +71,7 @@ export default {
     // 使用解构赋值声明 value = binding.value, arg = binding.arg, modifiers = binding.modifiers
     const { value, arg, modifiers } = binding
     // 如果没传对应的事件名称参数， 就默认使用 change 事件
-    const eventTyle = ['change', 'blur', 'input'].indexOf(arg) !== -1 ? arg : 'change'
+    const eventType = ['change', 'blur', 'input'].indexOf(arg) !== -1 ? arg : 'change'
     // 默认处理器， 当用户开始输入时， 移除错误提示
     const defaultHander = () => {
       showError(el)
@@ -85,19 +85,19 @@ export default {
     // 在 el 元素上的添加 input 事件监听
     el.addEventListener('input', defaultHander, false)
     // 在 el 元素上的添加用户指定的事件监听
-    el.addEventListener(eventTyle, handler, false)
+    el.addEventListener(eventType, handler, false)
 
     // 移除 el 元素上事件监听和数据绑定的方法
     el.destroy = () => {
       el.removeEventListener('input', defaultHander, false)
-      el.removeEventListener(eventTyle, handler, false)
+      el.removeEventListener(eventType, handler, false)
       el.destroy = null
     }
   },
   inserted(el, binding, vnode) {
     const { value, modifiers } = binding
     // 指定当前一系列验证项的父级， 我们这里指定为含 data-validator-form 的元素
-    const form = el.closest(['data-validator-form'])
+    const form = el.closest('[data-validator-form]')
     // 指定一个按钮来检查所有验证项，我们这里指定为含 type=submit 的元素
     const submitBtn = form ? form.querySelector('[type=submit]') : null
 
