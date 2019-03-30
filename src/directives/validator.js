@@ -9,6 +9,7 @@ function validate(el, modifiers, bindingValue) {
     defaultError = `${title}不能为空`
   } else if (bindingValue.target) {
     const target = document.querySelector(bindingValue.target)
+    console.log(bindingValue.target)
     const targetValue = target ? target.value : null
 
     if (targetValue !== value) {

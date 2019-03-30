@@ -16,7 +16,7 @@
           </div>
           <div class="form-group">
             <label class="control-label">密码</label>
-            <input v-model.trim="password" v-validator.required = "{ regex:/^\w{6,16}$/, error: '密码要求 6～16 个单词字符'}" type="password" class="form-control" placeholder="请填写密码">
+            <input id="password" v-model.trim="password" v-validator.required = "{ regex:/^\w{6,16}$/, error: '密码要求 6～16 个单词字符'}" type="password" class="form-control" placeholder="请填写密码">
           </div>
           <div class="form-group">
             <label class="control-label">确认密码</label>
