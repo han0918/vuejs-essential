@@ -6,7 +6,7 @@
         <hr>
         <div data-validator-form>
           <div class="form-group">
-            <lable>头像预览：</lable>
+            <label>头像预览：</label>
             <div>
               <img :src="avatar" class="avatar-preview-img">
             </div>

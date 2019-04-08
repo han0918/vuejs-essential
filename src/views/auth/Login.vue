@@ -27,7 +27,7 @@
 
 <script>
     export default {
-        name: "Login.vue",
+        name: "Login",
         data() {
           return {
             username:'', // 用户名

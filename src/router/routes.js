@@ -35,9 +35,23 @@ export default [
       {
         path: '/users/1/edit_avatar',
         name: 'EditAvatar',
-        component:() => import('@/veiws/users/Avatar'),
+        component:() => import('@/views/users/Avatar'),
+        meta:{ auth:true }
+      },
+      // EditPassword
+      {
+        path:'/users/1/edit_password',
+        name: 'EditPassword',
+        component:() => import('@/views/users/password'),
         meta:{ auth:true }
       }
     ]
+  },
+  // Create
+  {
+    path:'/articles/create',
+    name:'Create',
+    component: () => import('@/views/articles/Create'),
+    meta:{ auth:true }
   }
 ]
