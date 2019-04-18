@@ -53,5 +53,31 @@ export default [
     name:'Create',
     component: () => import('@/views/articles/Create'),
     meta:{ auth:true }
+  },
+
+  // Edit
+  {
+    path:'/articles/:articleId/edit',
+    name:'Edit',
+    component:() => import('@/views/articles/Create'),
+    meta:{ auth:true }
+  },
+  // Column
+  {
+    path:'/:user',
+    component:() => import('@/views/articles/Column'),
+    children: [
+      {
+        path:'',
+        name:'Column',
+        component:()=>import('@/views/articles/List')
+      },
+      // Content
+      {
+        path:'/articles/:articleId/content',
+        name:'Content',
+        component:() => import('@/views/articles/Content')
+      }
+    ]
   }
 ]
