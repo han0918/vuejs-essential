@@ -39,7 +39,7 @@ export const mockArticles = (num = 10 ) => {
       title : Random.ctitle(10, 20),
       // 随机生成 3 - 5 个的中文段落
       content : Random.cparagraph(3, 5),
-      date : new date(),
+      date : new Date(),
       likeUsers : [],
       comments : [],
       uname
