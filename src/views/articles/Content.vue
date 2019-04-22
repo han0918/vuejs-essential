@@ -262,35 +262,29 @@
             })
           },
           like(e) {
-            // 未登录时，提示登录
             if (!this.auth) {
               this.$swal({
                 text: '需要登录以后才能执行此操作。',
                 confirmButtonText: '前往登录'
-              }).then((res)=>{
-                if(res.value) {
+              }).then((res) => {
+                if (res.value) {
                   this.$router.push('/auth/login')
                 }
               })
             } else {
               const target = e.currentTarget
-              // 点赞按钮是否含有 active 类，我们用它来判断是否已赞
               const active = target.classList.contains('active')
               const articleId = this.articleId
 
-              if(active) {
-                // 清除已赞样式
+              if (active) {
                 this.likeClass = ''
-                // 分发 like 事件取消赞，更新实例的 likeUsers 为返回的值
-                this.$store.dispatch('like',{ articleId }).then((likeUsers) => {
+                this.$store.dispatch('like', { articleId }).then((likeUsers) => {
                   // 使用带用户信息的点赞用户
                   this.likeUsers = this.recompute('likeUsers')
                 })
               } else {
-                // 添加已赞样式
-                this.likeClass= 'active animated rubberBand'
-                // 分发 like 事件,传入 isAdd 参数点赞，更新实例的 likeUsers 为返回的值
-                this.$store.dispatch('like',{ articleId,isAdd:true }).then((likeUsers) => {
+                this.likeClass = 'active animated rubberBand'
+                this.$store.dispatch('like', { articleId, isAdd: true }).then((likeUsers) => {
                   // 使用带用户信息的点赞用户
                   this.likeUsers = this.recompute('likeUsers')
                 })
@@ -400,7 +394,7 @@
               }
             })
           },// 返回带用户信息的文章的某项属性
-          recompute(key) {
+            recompute(key) {
             const articleId = this.$route.params.articleId
             // 这里的文章是基于 getters.computedArticles 的，所以包含用户信息了
             const article = this.$store.getters.getArticleById(articleId)

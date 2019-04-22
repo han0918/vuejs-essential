@@ -67,24 +67,18 @@ const actions = {
 
 // 添加 getters
 const getters = {
-  // 第一个参数是 state 因为要传 id,所以这里返回一个函数
-  getArticleById: (state) => (id) =>{
+  getArticleById: (state, getters) => (id) => {
     // 使用派生状态 computedArticles 作为所有文章
     let articles = getters.computedArticles
 
-    // 所有文章是一个数组时
-    if(Array.isArray(articles)){
-      // 传进来的 id 和文章的 aritcleId 相同时，返回这些文章
+    if (Array.isArray(articles)) {
       articles = articles.filter(article => parseInt(id) === parseInt(article.articleId))
-      // 根据文章长度，返回文章或者 null
       return articles.length ? articles[0] : null
     } else {
-      // 返回 null
       return null
     }
   },
-
-  // 混入 moreGetters,你可以理解为 getters = Object.assign(getters,moreGetters)
+  // 混入 moreGetters, 你可以理解为 getters = Object.assign(getters, moreGetters)
   ...moreGetters
 }
 

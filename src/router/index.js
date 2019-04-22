@@ -5,33 +5,47 @@ import routes from './routes'
 
 Vue.use(Router)
 
-const router = new Router({
+const router =  new Router({
   mode: 'history',
-  linkExactActiveClass:'active',
+  linkExactActiveClass: 'active',
+  // 指定滚动行为
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      // 有锚点时，滚动到锚点
+      return { selector: to.hash }
+    } else if (savedPosition) {
+      // 有保存位置时，滚动到保存位置
+      return savedPosition
+    } else {
+      // 默认滚动到页面顶部
+      return { x: 0, y: 0 }
+    }
+  },
   routes
 })
 
 // 全局前置守卫
-router.beforeEach((to,from,next) =>{
+router.beforeEach((to, from, next) => {
   const app = router.app
   const store = app.$options.store
   const auth = store.state.auth
-  // 获取目标页面路由参数里的 articleId
   const articleId = to.params.articleId
+  // 当前用户
+  const user = store.state.user && store.state.user.name
+  // 路由参数中的用户
+  const paramUser = to.params.user
 
-  // 隐藏消息提示
   app.$message.hide()
 
-  if(
-    auth && to.path.indexOf('/auth/') !== -1 ||
+  if (
+    (auth && to.path.indexOf('/auth/') !== -1) ||
     (!auth && to.meta.auth) ||
-    // 有 articleId 且不能找到与其相应的文章时，跳转到首页
-    (articleId && !store.getters.getArticleById(articleId))
-
+    (articleId && !store.getters.getArticleById(articleId)) ||
+    // 路由参数中的用户不为当前用户，且找不到与其对应的文章时，跳转到首页
+    (paramUser && paramUser !== user && !store.getters.getArticlesByUid(null, paramUser).length)
   ) {
-    // 如果是当前用户登录，且目标路由包含 /auth/,就跳转到首页
     next('/')
-  }else{
+  } else {
     next()
   }
 })
