@@ -69,7 +69,7 @@ export const mockArticles = (num = 10 ) => {
           // 随机生成 5 - 10 字的中文文本
           content : Random.csentence(5, 10),
           date : article.date,
-          uname : article.uanme
+          uname : article.uname
         })
       })
 

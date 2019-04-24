@@ -74,7 +74,6 @@
         created() {
           // 获取仓库的个人信息
           const user = this.$store.state.user
-          console.log(user)
           if(user && typeof user === 'object') {
             // 将仓库的个人信息赋值给对应的变量
             const { name,sex,hobbies,introduction } = user

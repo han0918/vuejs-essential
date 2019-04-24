@@ -44,14 +44,23 @@
           </div>
         </div>
       </div>
+
+      <!-- 侧栏 -->
+      <TheSidebar/>
     </div>
 </template>
 
 <script>
   import { mapState } from 'vuex'
+  // 引入 TheSidebar.vue 的默认值
+  import TheSidebar from '@/components/layouts/TheSidebar'
 
   export default {
     name: 'Home',
+    components: {
+      // 局部注册 TheSidebar
+      TheSidebar
+    },
     data() {
       return {
         msg: '',
@@ -67,7 +76,7 @@
           { filter: 'noreply', name: '零回复', title: '无人问津的话题'}
         ],
         total: 0, // 文章总数
-        pageSize: 10, // 每页条数
+        pageSize: 20, // 每页条数
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -133,9 +142,11 @@
       },
       // 回调，组件的当前页改变时调用
       changePage(page) {
+        console.log(page)
         // 在查询参数中混入 page，并跳转到该地址
         // 混入部分等价于 Object.assign({}, this.$route.query, { page: page })
-        this.$router.push({ query: { ...this.$route.query, page } })
+        console.log({ ...this.$route.query, page }  )
+        // this.$router.push({ query: { ...this.$route.query, page } })
       }
     }
   }
